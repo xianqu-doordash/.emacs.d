@@ -1,3 +1,9 @@
+(use-package helm
+  :ensure t)
+
+(use-package helm-swoop
+  :ensure t)
+
 (require 'helm)
 (require 'helm-swoop)
 

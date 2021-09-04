@@ -1,3 +1,9 @@
+(use-package yasnippet
+  :ensure t)
+
+(use-package helm-c-yasnippet
+  :ensure t)
+
 (require 'yasnippet)
 
 ;; helm yasnippet

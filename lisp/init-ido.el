@@ -1,3 +1,6 @@
+(use-package ido
+  :ensure t)
+
 (progn
   ;; make buffer switch command do suggestions, also for find-file command
   (require 'ido)
