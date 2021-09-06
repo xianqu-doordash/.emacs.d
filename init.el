@@ -1,19 +1,29 @@
 ;; elpa
 (require 'package)
+
+;; package achives to retrieve package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; install the use-package to provide dependency for others
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(use-package which-key
+  :ensure t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-babel-load-languages '((awk . t) (emacs-lisp . t) (shell . t)))
+ '(org-babel-load-languages (quote ((awk . t) (emacs-lisp . t) (shell . t))))
  '(package-selected-packages
-   '(multiple-cursors helm-c-yasnippet yasnippet-classic-snippets yasnippet-snippets yasnippet which-key projectile helm-swoop use-package keyfreq graphql-mode rjsx-mode thrift scala-mode yaml-mode treemacs magit)))
+   (quote
+    (helm multiple-cursors helm-c-yasnippet yasnippet-classic-snippets yasnippet-snippets yasnippet which-key projectile helm-swoop use-package keyfreq graphql-mode rjsx-mode thrift scala-mode yaml-mode treemacs magit))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
