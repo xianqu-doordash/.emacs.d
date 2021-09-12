@@ -23,7 +23,7 @@
  '(org-babel-load-languages (quote ((awk . t) (emacs-lisp . t) (shell . t))))
  '(package-selected-packages
    (quote
-    (helm multiple-cursors helm-c-yasnippet yasnippet-classic-snippets yasnippet-snippets yasnippet which-key projectile helm-swoop use-package keyfreq graphql-mode rjsx-mode thrift scala-mode yaml-mode treemacs magit))))
+    (counsel-etags helm multiple-cursors helm-c-yasnippet yasnippet-classic-snippets yasnippet-snippets yasnippet which-key projectile helm-swoop use-package keyfreq graphql-mode rjsx-mode thrift scala-mode yaml-mode treemacs magit))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -64,6 +64,9 @@
 
 ;; projectile
 (require 'init-projectile)
+
+;; tags
+(require 'init-tags)
 
 ;; yasnippet
 (require 'init-yasnippet)
