@@ -73,3 +73,6 @@
 
 ;; dried
 (require 'init-dried)
+
+;; point-undo
+(require 'point-undo)
