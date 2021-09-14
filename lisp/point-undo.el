@@ -1,4 +1,5 @@
 ;; Got it somewhere on EmacsWiki
+;; XQ: Is it possible to make it functional across buffers?
 
 (defvar jtpp-prev-pos-stack nil
   "Stack of previous positions.")
