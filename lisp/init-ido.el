@@ -26,8 +26,6 @@
 
   ;; stop ido from suggesting when naming new file
   (define-key (cdr ido-minor-mode-map-entry) [remap write-file] nil))
-;; big minibuffer height, for ido to show choices vertically
-(setq max-mini-window-height 0.5)
 
 (provide 'init-ido)
 
