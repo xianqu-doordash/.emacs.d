@@ -31,10 +31,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; use scala mode for strato files
-;; TODO: actually write a strato mode and corresponding yasnippet
-(add-to-list 'auto-mode-alist '("\\.strato\\'" . scala-mode))
-
 ;; rjsx mode for js files
 (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 
