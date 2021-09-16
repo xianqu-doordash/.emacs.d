@@ -17,14 +17,6 @@
 ;; easy display of keys
 (which-key-mode)
 
-;; show the line number
-(global-linum-mode 1)
-
-;; turn on highlight matching brackets when cursor is on one
-(show-paren-mode 1)
-;; highlight brackets if visible, else entire expression
-(setq show-paren-style 'mixed)
-
 ;; make ibuffer default which gives color to the buffers
 (defalias 'list-buffers 'ibuffer)
 

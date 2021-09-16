@@ -1,6 +1,6 @@
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (provide 'init-git)
