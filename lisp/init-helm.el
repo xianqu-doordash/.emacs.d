@@ -1,5 +1,10 @@
+(use-package helm
+  :ensure t
+  )
+
 (use-package helm-swoop
   :ensure t
+  :requires helm
   :bind (("M-i" . helm-swoop)
 	 ("M-I" . 'helm-swoop-back-to-last-point)
 	 ("C-c M-i" . 'helm-multi-swoop)	   

@@ -1,3 +1,6 @@
+(use-package which-key
+  :ensure t)
+
 ;; one line at a time scroll
 (global-set-key (kbd "\C-z") 'scroll-up-line)
 (global-set-key (kbd "\C-q") 'scroll-down-line)
