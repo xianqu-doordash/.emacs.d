@@ -7,7 +7,4 @@
 ;; display time
 (display-time-mode 1)
 
-;; big minibuffer height, for ido to show choices vertically
-(setq max-mini-window-height 0.5)
-
 (provide 'init-display)
