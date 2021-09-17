@@ -5,9 +5,6 @@
 (global-set-key (kbd "\C-z") 'scroll-up-line)
 (global-set-key (kbd "\C-q") 'scroll-down-line)
 
-;; window-move bindings
-(windmove-default-keybindings)
-
 ;; restore split pane config, winner-undo, winner-redo
 (winner-mode 1)
 
