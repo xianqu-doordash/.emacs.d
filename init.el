@@ -55,8 +55,9 @@
 ;; file related settings
 (require 'init-file)
 
-;; projectile
-(require 'init-projectile)
+;; counsel
+;; file related completion change including projectile
+(require 'init-counsel)
 
 ;; tags
 (require 'init-tags)
