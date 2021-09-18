@@ -55,9 +55,8 @@
 ;; file related settings
 (require 'init-file)
 
-;; counsel
-;; file related completion change including projectile
-(require 'init-counsel)
+;; ivy suits, including ivy, counsel, swipper
+(require 'init-ivy)
 
 ;; tags
 (require 'init-tags)
