@@ -13,4 +13,8 @@
   :hook (after-init . counsel-projectile-mode)
   :bind-keymap ("C-c p" . projectile-command-map))
 
+(use-package swiper
+  :ensure t
+  :bind ("C-s" . swiper-isearch))
+
 (provide 'init-ivy)
