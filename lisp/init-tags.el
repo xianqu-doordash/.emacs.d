@@ -2,6 +2,8 @@
   :ensure t
   :bind (("C-]" . counsel-etags-find-tag-at-point))
   :init
+  ;; Don't ask before rereading the TAGS files if they have changed
+  (setq tags-revert-without-query t)
   (add-hook 'prog-mode-hook
         (lambda ()
           (add-hook 'after-save-hook

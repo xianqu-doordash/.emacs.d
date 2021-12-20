@@ -1,6 +1,8 @@
 ;; hide start up
 (setq inhibit-startup-screen t)
 
+(setq-default indent-tabs-mode nil)
+
 ;; default as maximized screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 

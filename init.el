@@ -17,10 +17,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-babel-load-languages (quote ((awk . t) (emacs-lisp . t) (shell . t))))
+ '(org-babel-load-languages '((awk . t) (emacs-lisp . t) (shell . t) (plantuml . t)))
  '(package-selected-packages
-   (quote
-    (ace-window smex counsel-etags helm multiple-cursors helm-c-yasnippet yasnippet-classic-snippets yasnippet-snippets yasnippet which-key projectile helm-swoop use-package keyfreq graphql-mode rjsx-mode thrift scala-mode yaml-mode treemacs magit))))
+   '(markdown-preview-mode ## typescript-mode markdown-mode ace-window smex counsel-etags helm multiple-cursors helm-c-yasnippet yasnippet-classic-snippets yasnippet-snippets yasnippet which-key projectile helm-swoop use-package keyfreq graphql-mode rjsx-mode thrift scala-mode yaml-mode treemacs magit)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -58,9 +57,6 @@
 ;; ivy suits, including ivy, counsel, swipper
 (require 'init-ivy)
 
-;; tags
-(require 'init-tags)
-
 ;; yasnippet
 (require 'init-yasnippet)
 
@@ -72,3 +68,15 @@
 
 ;; smex
 (require 'smex)
+
+;; org setup
+(require 'org-setup)
+
+;; markdown setup
+(require 'markdown-setup)
+
+;; projectile
+(require 'projectile-setup)
+
+;; tags
+(require 'init-tags)
