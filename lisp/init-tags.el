@@ -12,4 +12,6 @@
   (setq counsel-etags-update-interval 60)
   (push "build" counsel-etags-ignore-directories))
 
+(setq tags-add-tables nil)
+
 (provide 'init-tags)
