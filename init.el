@@ -1,34 +1,42 @@
-;; elpa
-(require 'package)
+;;; init.el --- Load the full configuration -*- lexical-binding: t -*-
+;;; Commentary:
 
-;; package achives to retrieve package
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
+;; This file bootstraps the configuration, which is divided into
+;; a number of other files.
 
-;; install the use-package to provide dependency for others
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+;;; Code:
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-babel-load-languages '((awk . t) (emacs-lisp . t) (shell . t) (plantuml . t)))
- '(package-selected-packages
-   '(markdown-preview-mode ## typescript-mode markdown-mode ace-window smex counsel-etags helm multiple-cursors helm-c-yasnippet yasnippet-classic-snippets yasnippet-snippets yasnippet which-key projectile helm-swoop use-package keyfreq graphql-mode rjsx-mode thrift scala-mode yaml-mode treemacs magit)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
+;;(setq debug-on-error t)
 
-;; add load paths for personalization
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(let ((minver "25.1"))
+  (when (version< emacs-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+(when (version< emacs-version "26.1")
+  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
+
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(require 'init-benchmarking) ;; Measure startup time
+
+(defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
+(defconst *is-a-mac* (eq system-type 'darwin))
+
+;; Adjust garbage collection thresholds during startup, and thereafter
+
+(let ((normal-gc-cons-threshold (* 20 1024 1024))
+      (init-gc-cons-threshold (* 128 1024 1024)))
+  (setq gc-cons-threshold init-gc-cons-threshold)
+  (add-hook 'emacs-startup-hook
+            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+
+;; Bootstrap config
+
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(require 'init-utils)
+(require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
+;; Calls (package-initialize)
+(require 'init-elpa)      ;; Machinery for installing required packages
+(require 'init-exec-path) ;; Set up $PATH
 
 ;; backup file setup
 (require 'init-backup)
@@ -80,3 +88,7 @@
 
 ;; tags
 (require 'init-tags)
+
+;; languages
+(require 'init-javascript)
+(require 'init-python)
