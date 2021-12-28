@@ -44,6 +44,9 @@
 ;; personal key bindings
 (require 'init-keys)
 
+;; multiple curosrs
+(require 'init-multiplecursor)
+
 ;; window configurationd
 (require 'init-window)
 
