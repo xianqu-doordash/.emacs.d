@@ -68,8 +68,8 @@
 ;; yasnippet
 (require 'init-yasnippet)
 
-;; dried
-(require 'init-dried)
+;; dired
+(require 'init-dired)
 
 ;; point-undo
 (require 'point-undo)

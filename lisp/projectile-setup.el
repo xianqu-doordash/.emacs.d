@@ -16,7 +16,4 @@
 
   (maybe-require-package 'ibuffer-projectile))
 
-
-(provide 'init-projectile)
-;;; init-projectile.el ends here
 (provide 'projectile-setup)
