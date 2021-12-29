@@ -2,6 +2,8 @@
   :ensure t
   )
 
+;; It seems like helm-swoop + multiple cusor is a good combination to edit multiple places at the same time
+;; We will see
 (use-package helm-swoop
   :ensure t
   :requires helm

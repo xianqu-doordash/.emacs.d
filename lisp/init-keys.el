@@ -1,8 +1,8 @@
 ;; easy display of keys
 (use-package which-key
-  :ensure t)
-
-(which-key-mode)
+  :ensure t
+  :init (which-key-mode 1)
+  )
 
 ;; one line at a time scroll
 (global-set-key (kbd "\C-z") 'scroll-up-line)
