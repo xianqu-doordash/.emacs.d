@@ -1,9 +1,57 @@
+;; easy display of keys
 (use-package which-key
   :ensure t)
+
+(which-key-mode)
 
 ;; one line at a time scroll
 (global-set-key (kbd "\C-z") 'scroll-up-line)
 (global-set-key (kbd "\C-q") 'scroll-down-line)
+
+;; restore scrolling
+(put 'scroll-down 'unscrollable t) 
+(put 'scroll-up 'unscrollable t)
+(put 'scroll-left 'unscrollable t)
+(put 'scroll-right 'unscrollable t)
+
+(defvar unscroll-pos (make-marker)
+  "the position to unscrolled ")
+
+(defvar unscroll-window-start (make-marker)
+  "window start to unscroll")
+
+(defvar unscroll-hscroll nil
+  "hscroll to unscroll")
+
+(defun maybe-remember-unscrollpos ()
+  (if (not (get last-command 'unscrollable))
+  (progn
+    (set-marker unscroll-pos (point))
+    (set-marker unscroll-window-start (window-start))
+    (setq unscroll-hscroll (window-hscroll)))))
+
+(defadvice scroll-up (before remember-for-unscroll activate compile)
+  "remember where to unscroll"
+  (maybe-remember-unscrollpos))
+
+(defadvice scroll-down (before remember-for-unscroll activate compile)
+  "remember where to unscroll"
+  (maybe-remember-unscrollpos))
+
+(defadvice scroll-left (before remember-for-unscroll activate compile)
+  "remember where to unscroll"
+  (maybe-remember-unscrollpos))
+
+(defadvice scroll-right (before remember-for-unscroll activate compile)
+  "remember where to unscroll"
+  (maybe-remember-unscrollpos))
+
+(defun unscroll ()
+  "revert to unscroll-pos"
+  (interactive)
+  (goto-char unscroll-pos)
+  (set-window-start nil unscroll-window-start)
+  (set-window-hscroll nil unscroll-hscroll))
 
 ;; restore split pane config, winner-undo, winner-redo
 (winner-mode 1)
@@ -13,9 +61,6 @@
 
 ;; Change "yes or no" to "y or n"
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;; easy display of keys
-(which-key-mode)
 
 ;; make ibuffer default which gives color to the buffers
 (defalias 'list-buffers 'ibuffer)
