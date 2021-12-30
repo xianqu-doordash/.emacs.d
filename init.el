@@ -38,8 +38,8 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-;; backup file setup
-(require 'init-backup)
+;; display
+(require 'init-display)
 
 ;; personal key bindings
 (require 'init-keys)
@@ -53,11 +53,11 @@
 ;; helm
 (require 'init-helm)
 
-;; display
-(require 'init-display)
-
+;; smex requires ido's setup for minibuffer
 ;; ido setups
 (require 'init-ido)
+;; smex
+(require 'smex)
 
 ;; git
 (require 'init-git)
@@ -65,29 +65,26 @@
 ;; file related settings
 (require 'init-file)
 
+;; backup file setup
+(require 'init-backup)
+
+;; dired
+(require 'init-dired)
+
 ;; ivy suits, including ivy, counsel, swipper
 (require 'init-ivy)
 
 ;; yasnippet
 (require 'init-yasnippet)
 
-;; dired
-(require 'init-dired)
-
 ;; point-undo
 (require 'point-undo)
-
-;; smex
-(require 'smex)
 
 ;; org setup
 (require 'org-setup)
 
 ;; markdown setup
 (require 'markdown-setup)
-
-;; projectile
-(require 'projectile-setup)
 
 ;; tags
 (require 'init-tags)
