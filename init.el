@@ -47,6 +47,9 @@
 ;; window configurationd
 (require 'init-window)
 
+;; expand region
+(require 'init-expand-region)
+
 ;; multiple curosrs
 (require 'init-multiplecursor)
 
