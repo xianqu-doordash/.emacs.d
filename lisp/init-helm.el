@@ -8,6 +8,7 @@
   :ensure t
   :requires helm
   :bind (("M-i" . helm-swoop)
+         ("C-s" . helm-swoop) ;; this seems to be more useful than swiper 
 	 ("M-I" . 'helm-swoop-back-to-last-point)
 	 ("C-c M-i" . 'helm-multi-swoop)	   
 	 ("C-x M-i" . 'helm-multi-swoop-all))
