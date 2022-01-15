@@ -11,8 +11,4 @@
 (use-package yasnippet-snippets
   :ensure t)
 
-(use-package helm-c-yasnippet
-  :ensure t
-  :bind(("C-c y" . 'helm-yas-complete)))
-
 (provide 'init-yasnippet)

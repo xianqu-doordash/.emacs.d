@@ -56,26 +56,17 @@
 ;; helm
 (require 'init-helm)
 
-;; smex requires ido's setup for minibuffer
-;; ido setups
-(require 'init-ido)
-;; smex
-(require 'smex)
-
 ;; git
 (require 'init-git)
 
-;; file related settings
-(require 'init-file)
+;; projectile
+(require 'init-projectile)
 
 ;; backup file setup
 (require 'init-backup)
 
 ;; dired
 (require 'init-dired)
-
-;; ivy suits, including ivy, counsel, swipper
-(require 'init-ivy)
 
 ;; yasnippet
 (require 'init-yasnippet)
@@ -89,9 +80,9 @@
 ;; markdown setup
 (require 'markdown-setup)
 
-;; tags
-(require 'init-tags)
-
 ;; languages
 (require 'init-javascript)
 (require 'init-python)
+
+;; amazon
+(require 'init-amazon)
