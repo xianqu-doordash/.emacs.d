@@ -15,7 +15,12 @@
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
 
+;; no toolbar
+(tool-bar-mode -1)
+
 ;; highlight brackets if visible, else entire expression
 (setq show-paren-style 'mixed)
+
+(setq tags-add-tables nil)
 
 (provide 'init-display)
