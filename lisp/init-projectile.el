@@ -14,6 +14,13 @@
                                     :test "brazil-build test"
                                     :test-dir "tst/"
                                     :test-suffix "Test")
+
+  ;; Amazon smithy mode
+  (projectile-register-project-type 'amazon-smithy '("Config" "model")
+                                    :project-file "Config"
+                                    :compile "brazil-build"
+                                    :src-dir "model/")
+
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
