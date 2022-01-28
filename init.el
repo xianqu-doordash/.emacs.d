@@ -71,6 +71,9 @@
 ;; yasnippet
 (require 'init-yasnippet)
 
+;; company mode
+(require 'init-company)
+
 ;; point-undo
 (require 'point-undo)
 
