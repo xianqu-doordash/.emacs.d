@@ -1,14 +1,3 @@
-;; enable recent files mode.
-(recentf-mode t)
-
-;; recently opened files
-;; get rid of `find-file-read-only' and replace it with something
-;; more useful.
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
-
-; 50 files ought to be enough.
-(setq recentf-max-saved-items 50)
-
 ;; hook for trailing white spaces
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
 

@@ -14,36 +14,36 @@
                                   :project-file "Config"
                                   :compile "brazil-build"
                                   :src-dir "src/"
-                                  :test 'xq/test-command
+                                  :test "brazil-build test"
                                   :test-dir "tst/"
                                   :test-suffix "Test")
 
-(defun xq/test-command ()
-  "Returns a String representing the test command to run for the given context"
-  (cond
-   ((eq major-mode 'js-mode) "grunt test") ;; Test the JS of the project, useless now
-   ((eq major-mode 'java-mode) (xq/brazil-java-test-command)) ;; Test the current java file/class
-   ((eq major-mode 'my-mode) "special-command.sh") ;; Even Special conditions/test-sets can be covered
-   )
-  )
 
-                                        ;TODO: how to handle search failed?
-(defun xq/brazil-java-test-command()
-  (let ((pkg-cls-name (xq/get-pkg-cls-name-for-test))
-        (method-name (xq/get-method-name-for-test)))
-    (if pkg-cls-name
-        (let ((cmd (concat
-                    "brazil-build single-unit-test -DtestClass="
-                    pkg-cls-name
-                    " -DtestMethods="
-                    method-name
-                    )))
-          cmd)
-      "brazil-build")
-    )
-  )
+(defun xq/projectile-test-project (arg)
+  "Run project test command either with on class level or on method level.
+   With prefix argument it will run on class level test."
+  (interactive "P")
+  (let* ((project-root (projectile-project-root))
+         (default-directory (projectile-compilation-dir))
+         (command (if arg
+                      (xq/brazil-java-test-command arg)
+                    (xq/brazil-java-test-command))))
+    (projectile-run-compilation command)))
+
+(defun xq/brazil-java-test-command (&optional cls-scope)
+  "Generates the java test command according to scope"
+  (let ((cmd (concat
+              "brazil-build single-unit-test -DtestClass="
+              (xq/get-pkg-cls-name-for-test))))
+    (if cls-scope
+        cmd
+      (concat
+       cmd
+       " -DtestMethods="
+       (xq/get-method-name-for-test)))))
 
 (defun xq/get-pkg-cls-name-for-test()
+  "Get the package name for testing"
   (save-excursion
     (save-restriction
       (save-match-data
@@ -53,11 +53,10 @@
             (concat (match-string 1)
                     "."
                     (xq/get-test-file-name(file-name-sans-extension (buffer-name))))
-          nil))))
-  )
+          nil)))))
 
-;TODO: Maybe only valid in test buffer?
 (defun xq/get-method-name-for-test()
+  "Get the method name for test"
   (save-excursion
     (save-restriction
       (save-match-data
@@ -65,14 +64,13 @@
         (if (and (re-search-backward "@Test") ;; usually i am editing the method part and just want to test the method
                  (re-search-forward "public void \\(.*\\)() "))
             (match-string 1)
-          nil))))
-  )
+          nil)))))
 
 (defun xq/get-test-file-name (fn)
+  "Get the class name with the current file"
   (if (string-match ".*Test" fn)
       fn
     (concat fn
-            "Test"))
-  )
+            "Test")))
 
 (provide 'init-amazon)

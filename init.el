@@ -62,6 +62,8 @@
 ;; projectile
 (require 'init-projectile)
 
+(require 'init-file)
+
 ;; backup file setup
 (require 'init-backup)
 
