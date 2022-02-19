@@ -14,15 +14,18 @@
 (define-key ctl-x-map "\C-j" 'dired-jump-other-window)
 
 (with-eval-after-load 'dired
-
   (setq dired-recursive-deletes 'top) ; “top” means ask once
   (setq dired-recursive-copies 'always) ; “always” means no asking
-
-  (define-key dired-mode-map (kbd "C-c C-q") 'wdired-change-to-wdired-mode))
+  )
 
 (when (maybe-require-package 'diff-hl)
   (with-eval-after-load 'dired
     (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
 
-(provide 'init-dired)
+(when (maybe-require-package 'dired-subtree)
+    (setq dired-subtree-use-backgrounds nil)
+  (let ((map dired-mode-map))
+    (define-key map (kbd "<tab>") #'dired-subtree-toggle)
+    (define-key map (kbd "<backtab>") #'dired-subtree-remove))) ; S-TAB
 
+(provide 'init-dired)
