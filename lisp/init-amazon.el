@@ -27,6 +27,10 @@
       (projectile-run-compilation "cr --new" t)
     (projectile-run-compilation "cr")))
 
+(defun xq/sam ()
+  (interactive)
+  (projectile-run-compilation "brazil-build-tool-exec sam package && brazil-build-tool-exec sam deploy"))
+
 (defun xq/projectile-test-project (arg)
   "Run project test command either with on class level or on method level.
    With prefix argument it will run on class level test."
