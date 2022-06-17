@@ -18,11 +18,14 @@
                                   :test-dir "tst/"
                                   :test-suffix "Test")
 
-;TODO: add for workspace
-(defun xq/pkg-cr (&optional scope)
-  "Send a CR with either current package or entire workspace"
+;TODO: add for workspace cr
+;TODO: also possible with pull the buffer and open in firefox?
+(defun xq/pkg-cr (&optional is-new)
+  "Send a CR with current package either new or revision"
   (interactive "P")
-  (projectile-run-compilation "cr"))
+  (if is-new
+      (projectile-run-compilation "cr --new" t)
+    (projectile-run-compilation "cr")))
 
 (defun xq/projectile-test-project (arg)
   "Run project test command either with on class level or on method level.
