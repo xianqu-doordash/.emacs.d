@@ -13,6 +13,8 @@
 (put 'scroll-up 'unscrollable t)
 (put 'scroll-left 'unscrollable t)
 (put 'scroll-right 'unscrollable t)
+(put 'end-of-buffer 'unscrollable t)
+(put 'beginning-of-buffer 'unscrollable t)
 
 (defvar unscroll-pos (make-marker)
   "the position to unscrolled ")
@@ -43,6 +45,14 @@
   (maybe-remember-unscrollpos))
 
 (defadvice scroll-right (before remember-for-unscroll activate compile)
+  "remember where to unscroll"
+  (maybe-remember-unscrollpos))
+
+(defadvice end-of-buffer (before remember-for-unscroll activate compile)
+  "remember where to unscroll"
+  (maybe-remember-unscrollpos))
+
+(defadvice beginning-of-buffer (before remember-for-unscroll activate compile)
   "remember where to unscroll"
   (maybe-remember-unscrollpos))
 
