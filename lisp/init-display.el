@@ -11,6 +11,7 @@
 
 ;; show the line number
 (global-linum-mode 1)
+(column-number-mode 1)
 
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
