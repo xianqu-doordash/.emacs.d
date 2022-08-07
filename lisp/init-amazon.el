@@ -28,8 +28,7 @@
 (defun xq/pkg-cr (&optional is-new)
   "Send a CR with current package either new or revision"
   (interactive "P")
-  (progn
-    (amz-mw-maybe-refresh-cookie)
+  (let ((compilation-buffer-name-function #'(lambda (_mode) "*Amz CR*")))
     (if is-new
         (projectile-run-compilation "cr --new" t)
       (projectile-run-compilation "cr"))))
