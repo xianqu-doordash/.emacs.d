@@ -86,11 +86,13 @@
 
 (defun xq/amz-open-cr-link(buffer msg)
   "Open cr link automatically after CR commands"
-  (let ((cr-regex "https://code.amazon.com/reviews/CR-[0-9]+"))
-    (switch-to-buffer buffer)
-    (goto-char (point-min))
-    (when (re-search-forward cr-regex nil t)
-      (xah-html-open-link-in-firefox (match-string 0)))))
+  (let ((cr-regex "https://code.amazon.com/reviews/CR-[0-9]+")
+        (amz-ws-cr-buffer-name "*Workspace cr*"))
+    (when (string= amz-ws-cr-buffer-name (buffer-name buffer))
+      (switch-to-buffer buffer)
+      (goto-char (point-min))
+      (when (re-search-forward cr-regex nil t)
+        (xah-html-open-link-in-firefox (match-string 0))))))
 
 (add-to-list 'compilation-finish-functions
 	     'xq/amz-open-cr-link)
