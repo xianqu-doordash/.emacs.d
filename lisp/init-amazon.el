@@ -24,7 +24,7 @@
                                   :compile "brazil-build"
                                   :src-dir "src/")
 
-                                        ;TODO: also possible with pull the buffer and open in firefox?
+;TODO: add more options such as workspace all
 (defun xq/pkg-cr (&optional is-new)
   "Send a CR with current package either new or revision"
   (interactive "P")
@@ -33,6 +33,17 @@
     (if is-new
         (projectile-run-compilation "cr --new" t)
       (projectile-run-compilation "cr"))))
+
+(defun xq/amz-open-cr-link(buffer msg)
+  "Open cr link automatically after CR commands"
+  (let ((cr-regex "https://code.amazon.com/reviews/CR-[0-9]+"))
+    (switch-to-buffer buffer)
+    (goto-char (point-min))
+    (when (re-search-forward cr-regex nil t)
+      (xah-html-open-link-in-firefox (match-string 0)))))
+
+(add-to-list 'compilation-finish-functions
+	     'xq/amz-open-cr-link)
 
 (defun xq/projectile-test-project (arg)
   "Run project test command either with on class level or on method level.
