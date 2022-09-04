@@ -6,24 +6,6 @@
 
 (setq smithy-indent-basic 4)
 
-(projectile-register-project-type 'amazon-smithy '("Config" "model")
-                                  :project-file "Config"
-                                  :compile "brazil-build"
-                                  :src-dir "model/")
-
-(projectile-register-project-type 'amazon-code '("Config" "src" "tst")
-                                  :project-file "Config"
-                                  :compile "brazil-build"
-                                  :src-dir "src/"
-                                  :test "brazil-build test"
-                                  :test-dir "tst/"
-                                  :test-suffix "Test")
-
-(projectile-register-project-type 'amazon-npm '("Config" "package.json")
-                                  :project-file "Config"
-                                  :compile "brazil-build"
-                                  :src-dir "src/")
-
 (defun xq/projectile-test-project (arg)
   "Run project test command either with on class level or on method level.
    With prefix argument it will run on class level test."
