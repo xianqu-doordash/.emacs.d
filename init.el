@@ -87,7 +87,6 @@
 
 ;; languages
 (require 'init-javascript)
-(require 'init-python)
 
 ;; amazon
 (require 'init-amazon)
