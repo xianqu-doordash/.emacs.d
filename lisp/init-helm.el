@@ -40,9 +40,4 @@
   ;; If you prefer fuzzy matching
   (setq helm-swoop-use-fuzzy-match t))
 
-(use-package helm-c-yasnippet
-  :after (helm)
-  :ensure t
-  :bind ("C-c y" . helm-yas-complete))
-
 (provide 'init-helm)
