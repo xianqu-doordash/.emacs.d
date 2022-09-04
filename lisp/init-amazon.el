@@ -1,10 +1,28 @@
-(require 'amz-common)
-(require 'init-projectile)
-
-(add-to-list 'auto-mode-alist '("\\.smithy\\'" . smithy-mode))
-(add-to-list 'auto-mode-alist '("Config" . brazil-config-mode))
-
-(setq smithy-indent-basic 4)
+(use-package amz-common
+  :after(projectile)
+  :init
+  (add-to-list 'auto-mode-alist '("\\.smithy\\'" . smithy-mode))
+  (add-to-list 'auto-mode-alist '("Config" . brazil-config-mode))
+  (add-to-list 'compilation-finish-functions 'xq/amz-open-cr-link)
+  :config
+  (projectile-register-project-type 'amazon-smithy '("Config" "model")
+                                    :project-file "Config"
+                                    :compile "brazil-build"
+                                    :src-dir "model/")
+  (projectile-register-project-type 'amazon-code '("Config" "src" "tst")
+                                    :project-file "Config"
+                                    :compile "brazil-build"
+                                    :src-dir "src/"
+                                    :test "brazil-build test"
+                                    :test-dir "tst/"
+                                    :test-suffix "Test")
+  (projectile-register-project-type 'amazon-npm '("Config" "package.json")
+                                    :project-file "Config"
+                                    :compile "brazil-build"
+                                    :src-dir "src/")
+  :custom
+  (smithy-indent-basic 4 "Indentation for smithy mode")
+  (amz-workspace-review-use-comint t "Always use comint bufer for amazon workspace cr"))
 
 (defun xq/projectile-test-project (arg)
   "Run project test command either with on class level or on method level.
@@ -60,9 +78,6 @@
     (concat fn
             "Test")))
 
-; Amazon CR related setups
-(customize-set-variable 'amz-workspace-review-use-comint t)
-
 (defadvice amz-workspace-review (before mw-activation-before-amz-workspace-cr activate)
   (amz-mw-maybe-refresh-cookie))
 
@@ -86,8 +101,5 @@
       (goto-char (point-min))
       (when (re-search-forward cr-regex nil t)
         (xah-html-open-link-in-firefox (match-string 0))))))
-
-(add-to-list 'compilation-finish-functions
-	     'xq/amz-open-cr-link)
 
 (provide 'init-amazon)
