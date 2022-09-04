@@ -81,7 +81,18 @@
 ; Amazon CR related setups
 (customize-set-variable 'amz-workspace-review-use-comint t)
 
-(defadvice amz-workspace-review (before mw-activation-before-cr activate)
+(defadvice amz-workspace-review (before mw-activation-before-amz-workspace-cr activate)
+  (amz-mw-maybe-refresh-cookie))
+
+(defun xq/pkg-cr (&optional is-new)
+  "Send a CR with current package either new or revision"
+  (interactive "P")
+  (let ((compilation-buffer-name-function #'(lambda (_mode) "*Workspace cr*")))
+    (if is-new
+        (projectile-run-compilation "cr --new" t)
+      (projectile-run-compilation "cr"))))
+
+(defadvice xq/pkg-cr (before mw-activation-before-xq/pkg-cr activate)
   (amz-mw-maybe-refresh-cookie))
 
 (defun xq/amz-open-cr-link(buffer msg)

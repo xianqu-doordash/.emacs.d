@@ -1,31 +1,26 @@
-;; allows for split window copying
-(setq dired-dwim-target t)
+(use-package diff-hl
+  :ensure t)
 
-;; Prefer g-prefixed coreutils version of standard utilities when available
-(let ((gls (executable-find "gls")))
-  (when gls (setq insert-directory-program gls)))
+(use-package diredfl
+  :ensure t)
 
-(when (maybe-require-package 'diredfl)
-  (with-eval-after-load 'dired
-    (diredfl-global-mode)
-    (require 'dired-x)))
+(use-package dired-subtree
+  :ensure t
+  :config
+  (setq dired-subtree-use-backgrounds nil))
 
-;; Hook up dired-x global bindings without loading it up-front
-(define-key ctl-x-map "\C-j" 'dired-jump-other-window)
-
-(with-eval-after-load 'dired
-  (setq dired-recursive-deletes 'top) ; “top” means ask once
-  (setq dired-recursive-copies 'always) ; “always” means no asking
-  )
-
-(when (maybe-require-package 'diff-hl)
-  (with-eval-after-load 'dired
-    (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
-
-(when (maybe-require-package 'dired-subtree)
-    (setq dired-subtree-use-backgrounds nil)
-  (let ((map dired-mode-map))
-    (define-key map (kbd "<tab>") #'dired-subtree-toggle)
-    (define-key map (kbd "<backtab>") #'dired-subtree-remove))) ; S-TAB
+(use-package dired
+  :after (diff-hl diredfl dired-subtree)
+  :hook diff-hl-dired-mode
+  :bind (:map dired-mode-map
+         ("<tab>" . dired-subtree-toggle)
+         ("<backtab>" . dired-subtree-remove)
+         :map ctl-x-map
+         ("C-j" . dired-jump-other-window))
+  :config
+  (setq dired-recursive-deletes 'top) ;; “top” means ask once
+  (setq dired-recursive-copies 'always) ;; “always” means no asking
+  (setq dired-dwim-target t) ;; allows for split window copying
+  (diredfl-global-mode))
 
 (provide 'init-dired)
