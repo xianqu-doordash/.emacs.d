@@ -18,4 +18,11 @@
      (http . t)
      (python .t))))
 
+(use-package helm-org-rifle
+  :ensure t
+  :after (helm org)
+  :bind
+  ("M-g r r" . helm-org-rifle)
+  ("M-g r o" . helm-org-rifle-org-directory))
+
 (provide 'org-setup)
