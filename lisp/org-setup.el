@@ -15,8 +15,9 @@
      (emacs-lisp . t)
      (shell . t)
      (plantuml . t)
-     (http . t)
-     (python .t))))
+     (python .t)))
+  ;; disable prompt when executing code block in org mode
+  (setq org-confirm-babel-evaluate nil))
 
 (use-package helm-org-rifle
   :ensure t
