@@ -4,8 +4,7 @@
   (setq tab-always-indent 'complete)
   (add-to-list 'completion-styles 'initials t)
   (add-hook 'after-init-hook 'global-company-mode)
-  :config
-  (diminish 'comapny-mode)
+  :diminish company-mode
   :bind
   (("M-C-/" . company-complete)
    :map company-mode-map

@@ -1,6 +1,7 @@
 ;; projectile
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config
   ;; required to spot the projectile
   (projectile-global-mode)

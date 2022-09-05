@@ -27,6 +27,7 @@
 ;; never lose the cursor
 (use-package beacon
   :ensure t
+  :diminish beacon-mode
   :config
   (beacon-mode 1)
   (setq beacon-color "red"))

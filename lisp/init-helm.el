@@ -1,5 +1,6 @@
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-c h" . helm-mini)
          ("C-h a" . helm-apropos)
