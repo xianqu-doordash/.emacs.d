@@ -37,55 +37,24 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-;; display
+
+(require 'init-spelling)
 (require 'init-display)
-
-;; personal key bindings
 (require 'init-keys)
-
-;; window configurationd
 (require 'init-window)
-
-;; expand region
 (require 'init-expand-region)
-
-;; multiple curosrs
 (require 'init-multiplecursor)
-
-;; helm
 (require 'init-helm)
-
-;; git
 (require 'init-git)
-
-;; projectile
 (require 'init-projectile)
-
 (require 'init-file)
-
-;; backup file setup
 (require 'init-backup)
-
-;; dired
 (require 'init-dired)
-
-;; yasnippet
 (require 'init-yasnippet)
-
-;; company mode
 (require 'init-company)
-
-;; point-undo
 (require 'point-undo)
-
-;; org setup
 (require 'org-setup)
-
-;; markdown setup
 (require 'markdown-setup)
-
-;; languages
 (require 'init-javascript)
 
-;; amazon
 (require 'init-amazon)
