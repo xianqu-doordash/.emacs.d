@@ -1,2 +1,2 @@
 * Xian Qu's personal Emacs setup
-  This is the personal emacs setup matained by Xian Qu (xianqugithub). As the matainer is still at rudimentary stage in terms of emacs in general, the setup is primarily for personal backup.
+  This is the personal emacs setup matained by Xian Qu (xianqugithub). As the matainer is still at rudimentary stage in terms of emacs in general, the setup is primarily for personal backup. Rightnow the setup is largely chimera. Hopefully it will get cleaned up as I get improved myself.
