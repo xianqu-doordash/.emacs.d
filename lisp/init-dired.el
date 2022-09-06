@@ -23,4 +23,9 @@
   (setq dired-dwim-target t) ;; allows for split window copying
   (diredfl-global-mode))
 
+(use-package peep-dired
+  :ensure t
+  :bind (:map dired-mode-map
+              ("P" . peep-dired)))
+
 (provide 'init-dired)
