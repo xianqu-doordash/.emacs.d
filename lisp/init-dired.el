@@ -14,14 +14,14 @@
   :hook diff-hl-dired-mode
   :bind (:map dired-mode-map
          ("<tab>" . dired-subtree-toggle)
-         ("<backtab>" . dired-subtree-remove)
-         :map ctl-x-map
-         ("C-j" . dired-jump-other-window))
+         ("<backtab>" . dired-subtree-remove))
   :config
   (setq dired-recursive-deletes 'top) ;; “top” means ask once
   (setq dired-recursive-copies 'always) ;; “always” means no asking
   (setq dired-dwim-target t) ;; allows for split window copying
   (diredfl-global-mode))
+
+(global-set-key (kbd "C-x C-j") #'dired-jump-other-window)
 
 (use-package peep-dired
   :ensure t
