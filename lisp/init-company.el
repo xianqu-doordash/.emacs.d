@@ -19,7 +19,8 @@
    ("M-." . company-show-location))
   :custom
   (company-dabbrev-other-buffers 'all)
-  (company-tooltip-align-annotations t))
+  (company-tooltip-align-annotations t)
+  (company-show-quick-access 'left))
 
 (use-package company-quickhelp
   :ensure t

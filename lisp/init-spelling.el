@@ -1,7 +1,6 @@
 (require 'ispell)
 
 (when (executable-find ispell-program-name)
-  (add-hook 'org-mode-hook 'flyspell-mode)
   (add-hook 'markdown-mode-hook 'flyspell-mode))
 
 ;; the personal dictionary is stored at ~/.ispell_english

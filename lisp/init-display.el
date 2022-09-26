@@ -9,18 +9,19 @@
 ;; display time
 (display-time-mode 1)
 
-;; show the line number
+;; show line/column number
 (global-linum-mode 1)
 (column-number-mode 1)
 
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
+;; automatic paring of parens
+(electric-pair-mode 1)
+;; highlight brackets if visible, else entire expression
+(setq show-paren-style 'mixed)
 
 ;; no toolbar
 (tool-bar-mode -1)
-
-;; highlight brackets if visible, else entire expression
-(setq show-paren-style 'mixed)
 
 (setq tags-add-tables nil)
 
