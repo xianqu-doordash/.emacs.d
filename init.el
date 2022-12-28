@@ -37,7 +37,6 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-
 (require 'init-spelling)
 (require 'init-display)
 (require 'init-keys)
@@ -57,4 +56,4 @@
 (require 'markdown-setup)
 (require 'init-javascript)
 
-(require 'init-amazon)
+;; (require 'init-amazon)
