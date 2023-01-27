@@ -23,9 +23,4 @@
 
 (global-set-key (kbd "C-x C-j") #'dired-jump-other-window)
 
-(use-package peep-dired
-  :ensure t
-  :bind (:map dired-mode-map
-              ("P" . peep-dired)))
-
 (provide 'init-dired)
