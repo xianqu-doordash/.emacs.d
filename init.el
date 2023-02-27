@@ -32,7 +32,6 @@
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
 (require 'init-elpa)      ;; Machinery for installing required packages
-(require 'init-exec-path) ;; Set up $PATH
 
 (require 'init-spelling)
 (require 'init-display)
@@ -48,7 +47,6 @@
 (require 'init-dired)
 (require 'init-yasnippet)
 (require 'init-company)
-(require 'point-undo)
 (require 'org-setup)
 (require 'markdown-setup)
 (require 'init-javascript)

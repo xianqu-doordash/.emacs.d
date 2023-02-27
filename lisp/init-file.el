@@ -29,15 +29,6 @@
       (set-visited-file-name new-name)
       (rename-buffer new-name))))
 
-(defun browse-current-file ()
-  "Open the current file as a URL using `browse-url'."
-  (interactive)
-  (let ((file-name (buffer-file-name)))
-    (if (and (fboundp 'tramp-tramp-file-p)
-             (tramp-tramp-file-p file-name))
-        (error "Cannot open tramp file")
-      (browse-url (concat "file://" file-name)))))
-
 (defun xah-html-open-link-in-firefox (&optional @fullpath)
   "open url under cursor in Firefox browser.
 Work in Windows, macOS. 2019-11-09 linux not yet.
