@@ -2,11 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(maybe-require-package 'typescript-mode)
-;; typescript hook for tsx
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+(use-package typescript-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode)))
 
-(maybe-require-package 'rjsx-mode)
+(use-package rjsx-mode
+  :ensure t)
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here
