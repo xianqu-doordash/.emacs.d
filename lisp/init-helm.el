@@ -41,4 +41,10 @@
   ;; If you prefer fuzzy matching
   (setq helm-swoop-use-fuzzy-match t))
 
+(use-package helm-descbinds
+  :ensure t
+  :defer t
+  :bind (("C-h b" . helm-descbinds)
+         ("C-h w" . helm-descbinds)))
+
 (provide 'init-helm)
