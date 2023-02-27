@@ -98,7 +98,7 @@ advice for `require-package', to which ARGS are passed."
 (let ((package-check-signature nil))
   (require-package 'gnu-elpa-keyring-update))
 
-(require-package 'use-package)
+;; (require-package 'use-package)
 
 
 (defun sanityinc/set-tabulated-list-column-width (col-name width)
