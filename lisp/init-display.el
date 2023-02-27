@@ -15,8 +15,10 @@
 
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
-;; automatic paring of parens
-(electric-pair-mode 1)
+
+; TODO: substitue with smart parens
+;; https://ebzzry.com/en/emacs-pairs/
+
 ;; highlight brackets if visible, else entire expression
 (setq show-paren-style 'mixed)
 
