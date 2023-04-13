@@ -13,6 +13,9 @@
 (global-linum-mode 1)
 (column-number-mode 1)
 
+;; scroll down to the first compilation error
+(setq compilation-scroll-output 'first-error)
+
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
 

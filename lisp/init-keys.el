@@ -1,15 +1,21 @@
 ;; easy display of keys
 (use-package which-key
   :ensure t
-  :init (which-key-mode 1)
-  )
+  :init (which-key-mode 1))
+
+;; key frequency
+(use-package keyfreq
+  :ensure t
+  :init
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
 
 ;; one line at a time scroll
 (global-set-key (kbd "\C-z") 'scroll-up-line)
 (global-set-key (kbd "\C-q") 'scroll-down-line)
 
 ;; restore scrolling
-(put 'scroll-down 'unscrollable t) 
+(put 'scroll-down 'unscrollable t)
 (put 'scroll-up 'unscrollable t)
 (put 'scroll-left 'unscrollable t)
 (put 'scroll-right 'unscrollable t)
