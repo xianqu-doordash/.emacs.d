@@ -51,4 +51,28 @@
         (shell-command-on-region (point-min) (point-max) "node -p" nil 't)
         (buffer-string))))))
 
+(defcustom xq/config-stage ?g
+  "Stage to extract configurations."
+  :type '(character))
+
+;TODO: considering put this somewhere general
+(setq xq/stage-hash-map (make-hash-table :test 'equal))
+(puthash ?a "alpha" xq/stage-hash-map)
+(puthash ?b "beta" xq/stage-hash-map)
+(puthash ?g "gamma" xq/stage-hash-map)
+(puthash ?p "prod" xq/stage-hash-map)
+
+;; Still hard coded, but have the potential to generalize
+;;TODO: 1. make the src-block more generalized from params
+(defun xq/org-babel-refresh-configurations()
+  "Refresh the entire configuration of some org file"
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (save-match-data)
+      (org-babel-goto-named-src-block "roa-configuration-by-stage")
+      (if (re-search-forward "stage=\"[[:alpha:]]*\"$" nil t)
+          (replace-match (concat "stage=\"" (gethash xq/config-stage xq/stage-hash-map) "\"")))
+      (org-babel-execute-subtree))))
+
 (provide 'org-setup)
