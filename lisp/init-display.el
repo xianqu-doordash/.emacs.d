@@ -19,6 +19,9 @@
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
 
+;; shows the block in which function
+(which-function-mode 1)
+
 (use-package smartparens
   :ensure t
   :config
