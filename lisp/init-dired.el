@@ -21,6 +21,9 @@
   (setq dired-dwim-target t) ;; allows for split window copying
   (diredfl-global-mode))
 
-(global-set-key (kbd "C-x C-j") #'dired-jump-other-window)
+(use-package dired-x
+  :after (dired)
+  :config
+  (global-set-key (kbd "C-x C-j") #'dired-jump-other-window))
 
 (provide 'init-dired)
