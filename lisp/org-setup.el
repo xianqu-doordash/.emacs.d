@@ -19,6 +19,21 @@
      (java .t)))
   ;; disable prompt when executing code block in org mode
   (setq org-confirm-babel-evaluate nil)
+  (setq org-todo-keywords
+        '((sequence
+           "STARTED(s)"
+           "TODO(t)"  ; next action
+           "WAITING(w@/!)"
+           "SOMEDAY(.)" "BLOCKED(k@/!)" "|" "DONE(x!)" "CANCELLED(c)")
+          (sequence "PROJECT" "|" "DONE(x)")
+          (sequence "LEARN" "TRY" "TEACH" "|" "COMPLETE(x)")
+          (sequence "TOSKETCH" "SKETCHED" "|" "POSTED")
+          (sequence "TODELEGATE(-)" "DELEGATED(d)" "|" "COMPLETE(x)")))
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:foreground "green" :weight bold))
+          ("DONE" . (:foreground "cyan" :weight bold))
+          ("WAITING" . (:foreground "red" :weight bold))
+          ("SOMEDAY" . (:foreground "gray" :weight bold))))
   :hook
   (org-mode . visual-line-mode))
 
