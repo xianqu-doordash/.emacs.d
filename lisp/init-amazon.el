@@ -102,4 +102,9 @@
       (when (re-search-forward cr-regex nil t)
         (xah-html-open-link-in-firefox (match-string 0))))))
 
+(defun xq/aws-creds-refresh()
+  (interactive)
+  (let (compilation-buffer-name-function #'(lambda (_mode) "*AWS credential*"))
+    (projectile-run-compilation "ada credentials update --account=900707210426 --provider=isengard --role=Admin --once")))
+
 (provide 'init-amazon)
