@@ -102,9 +102,58 @@
       (when (re-search-forward cr-regex nil t)
         (xah-html-open-link-in-firefox (match-string 0))))))
 
+(defcustom xq/aws-account-number "900707210426"
+  "Account number for aws actions."
+  :group 'xq-aws
+  :type 'string
+  :version "24.4")
+
+(defcustom xq/aws-role "Admin"
+  "Aws role for credential."
+  :group 'xq-aws
+  :type 'string
+  :version "24.4")
+
+(setq xq/aws-accounts '(("quxq" . "900707210426")
+                        ("splenda-alpha" . "140618555450")))
+
+(setq xq/aws-accounts-helm-source
+      `((name . "AWS Accounts")
+        (candidates . ,xq/aws-accounts)
+        (action . (lambda (candidate)
+                    (helm-marked-candidates)))))
+
+(defun xq/helm-select-and-set-aws-account()
+  (interactive)
+  (setq
+   xq/aws-account-number
+   (mapconcat 'identity
+              (helm :sources '(xq/aws-accounts-helm-source))
+              ",")))
+
+(setq xq/aws-roles '(("Admin" . "Admin")
+                     ("ReadOnly" . "ReadOnly")))
+
+(setq xq/aws-roles-helm-source
+      `((name . "Roles")
+        (candidates . ,xq/aws-roles)
+        (action . (lambda (candidate)
+                    (helm-marked-candidates)))))
+
+(defun xq/helm-select-and-set-aws-role()
+  (interactive)
+  (setq
+   xq/aws-role
+   (mapconcat 'identity
+              (helm :sources '(xq/aws-roles-helm-source))
+              ",")))
+
+;TODO: use prefix to decide if it's meant to be defcustom or from the helm selection
+;TODO: def advice this for mwinit
 (defun xq/aws-creds-refresh()
   (interactive)
-  (let (compilation-buffer-name-function #'(lambda (_mode) "*AWS credential*"))
-    (projectile-run-compilation "ada credentials update --account=900707210426 --provider=isengard --role=Admin --once")))
+  (let ((refresh-command (format "ada credentials update --account=%s --provider=isengard --role=%s --once" xq/aws-account-number xq/aws-role)))
+    (compile refresh-command)))
+
 
 (provide 'init-amazon)
