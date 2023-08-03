@@ -148,7 +148,6 @@
               (helm :sources '(xq/aws-roles-helm-source))
               ",")))
 
-;TODO: def advice this for mwinit
 ;TODO: more options say for personal etc, right now it just uses what is already defined in defcustom
 ;TODO: is compile buf the best here
 (defun xq/aws-creds-refresh(&optional specify-account-role)
@@ -158,5 +157,8 @@
       (xq/helm-select-and-set-aws-account)
       (xq/helm-select-and-set-aws-role))
     (compile (format "ada credentials update --account=%s --provider=isengard --role=%s --once" xq/aws-account-number xq/aws-role))))
+
+(defadvice xq/aws-creds-refresh (before mw-activation-before-xq/aws-creds-refresh activate)
+  (amz-mw-maybe-refresh-cookie))
 
 (provide 'init-amazon)
