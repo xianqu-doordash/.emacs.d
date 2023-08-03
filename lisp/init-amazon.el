@@ -148,12 +148,15 @@
               (helm :sources '(xq/aws-roles-helm-source))
               ",")))
 
-;TODO: use prefix to decide if it's meant to be defcustom or from the helm selection
 ;TODO: def advice this for mwinit
-(defun xq/aws-creds-refresh()
-  (interactive)
-  (let ((refresh-command (format "ada credentials update --account=%s --provider=isengard --role=%s --once" xq/aws-account-number xq/aws-role)))
-    (compile refresh-command)))
-
+;TODO: more options say for personal etc, right now it just uses what is already defined in defcustom
+;TODO: is compile buf the best here
+(defun xq/aws-creds-refresh(&optional specify-account-role)
+  (interactive "P")
+  (progn
+    (when specify-account-role
+      (xq/helm-select-and-set-aws-account)
+      (xq/helm-select-and-set-aws-role))
+    (compile (format "ada credentials update --account=%s --provider=isengard --role=%s --once" xq/aws-account-number xq/aws-role))))
 
 (provide 'init-amazon)
