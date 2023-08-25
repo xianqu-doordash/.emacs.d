@@ -115,7 +115,8 @@
   :version "24.4")
 
 (setq xq/aws-accounts '(("quxq" . "900707210426")
-                        ("splenda-alpha" . "140618555450")))
+                        ("Splenda App Alpha" . "140618555450")
+                        ("Splenda App Prod" . "757753828242")))
 
 (setq xq/aws-accounts-helm-source
       `((name . "AWS Accounts")
@@ -132,7 +133,8 @@
               ",")))
 
 (setq xq/aws-roles '(("Admin" . "Admin")
-                     ("ReadOnly" . "ReadOnly")))
+                     ("ReadOnly" . "ReadOnly")
+                     ("RedeployApp" . "RedeployApp")))
 
 (setq xq/aws-roles-helm-source
       `((name . "Roles")
@@ -149,14 +151,16 @@
               ",")))
 
 ;TODO: more options say for personal etc, right now it just uses what is already defined in defcustom
-;TODO: is compile buf the best here
+                                        ;TODO: is compile buf the best here
 (defun xq/aws-creds-refresh(&optional specify-account-role)
   (interactive "P")
   (progn
     (when specify-account-role
       (xq/helm-select-and-set-aws-account)
       (xq/helm-select-and-set-aws-role))
-    (compile (format "ada credentials update --account=%s --provider=isengard --role=%s --once" xq/aws-account-number xq/aws-role))))
+    (if (or (null xq/aws-account-number) (null xq/aws-role))
+        (message  "make sure %s %s are both non-null" xq/aws-account-number xq/aws-role)
+      (compile (format "ada credentials update --account=%s --provider=isengard --role=%s --once" xq/aws-account-number xq/aws-role)))))
 
 (defadvice xq/aws-creds-refresh (before mw-activation-before-xq/aws-creds-refresh activate)
   (amz-mw-maybe-refresh-cookie))
