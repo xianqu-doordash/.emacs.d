@@ -100,7 +100,7 @@
       (switch-to-buffer buffer)
       (goto-char (point-min))
       (when (re-search-forward cr-regex nil t)
-        (xah-html-open-link-in-firefox (match-string 0))))))
+        (xq/open-link-in-browser (match-string 0))))))
 
 (defcustom xq/aws-account-number "900707210426"
   "Account number for aws actions."
@@ -116,7 +116,8 @@
 
 (setq xq/aws-accounts '(("quxq" . "900707210426")
                         ("Splenda App Alpha" . "140618555450")
-                        ("Splenda App Prod" . "757753828242")))
+                        ("Splenda App Prod" . "757753828242")
+                        ("RFAShopifyAdapter Storage Alpha" . "471316563633")))
 
 (setq xq/aws-accounts-helm-source
       `((name . "AWS Accounts")

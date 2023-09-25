@@ -64,6 +64,44 @@ Version 2019-11-09"
      ((string-equal system-type "gnu/linux")
       (shell-command (format "firefox \"%s\"" $path))))))
 
+(defcustom xq/browser-type "Chrome"
+  "Browser type used by emacs buffer for triggering"
+  :group 'xq-file
+  :type 'string
+  :version "24.4")
+
+(defun xq/open-link-in-browser (&optional @fullpath)
+  "This largely copy and paste from previous function, with some minor tweaks, only specific for darwin os"
+  (interactive)
+  (let ($path
+        $browserApp)
+    (if @fullpath
+        (progn (setq $path @fullpath))
+      (let (($inputStr
+             (if (use-region-p)
+                 (buffer-substring-no-properties (region-beginning) (region-end))
+               (let ($p0 $p1 $p2
+                         ($pathStops "^  \t\n\"`'‘’“”|[]{}「」<>〔〕〈〉《》【】〖〗«»‹›❮❯❬❭〘〙·。\\"))
+                 (setq $p0 (point))
+                 (skip-chars-backward $pathStops)
+                 (setq $p1 (point))
+                 (goto-char $p0)
+                 (skip-chars-forward $pathStops)
+                 (setq $p2 (point))
+                 (goto-char $p0)
+                 (buffer-substring-no-properties $p1 $p2)))))
+        (setq $path (replace-regexp-in-string
+                     "^file:///" "/"
+                     (replace-regexp-in-string
+                      ":\\'" "" $inputStr)))))
+    (cond
+     ((string-equal xq/browser-type "Chrome")
+      (setq $browserApp "Google Chrome.app"))
+     ((string-equal xq/browser-type "FireFox")
+      (setq $browserApp "Firefox.app"))
+     (error "Invalid browser option -- try something else"))
+    (shell-command (format "open -a \"%s\" \"%s\"" $browserApp $path))))
+
 (defun xah-open-in-terminal ()
   "Open the current dir in a new terminal window.
 on Microsoft Windows, it starts cross-platform PowerShell pwsh. You need to have it installed.

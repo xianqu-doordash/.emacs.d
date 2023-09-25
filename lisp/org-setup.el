@@ -66,6 +66,17 @@
         (shell-command-on-region (point-min) (point-max) "node -p" nil 't)
         (buffer-string))))))
 
+(use-package ox-moderncv
+    :load-path "/Users/quxq/Downloads/org-cv"
+    :init (require 'ox-moderncv))
+
+
+(defun xq/export-resume ()
+  "export current buffer of resume to pdf"
+  (interactive)
+  (org-export-to-file 'moderncv "XianQuResume.tex")
+  (org-latex-compile "XianQuResume.tex"))
+
 (defcustom xq/config-stage ?g
   "Stage to extract configurations."
   :type '(character))
