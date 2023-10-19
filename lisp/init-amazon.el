@@ -86,7 +86,7 @@
   (interactive "P")
   (let ((compilation-buffer-name-function #'(lambda (_mode) "*Workspace cr*")))
     (if is-new
-        (projectile-run-compilation "cr --new" t)
+        (projectile-run-compilation "cr --new-review" t)
       (projectile-run-compilation "cr"))))
 
 (defadvice xq/pkg-cr (before mw-activation-before-xq/pkg-cr activate)
@@ -114,10 +114,7 @@
   :type 'string
   :version "24.4")
 
-(setq xq/aws-accounts '(("quxq" . "900707210426")
-                        ("Splenda App Alpha" . "140618555450")
-                        ("Splenda App Prod" . "757753828242")
-                        ("RFAShopifyAdapter Storage Alpha" . "471316563633")))
+(setq xq/aws-accounts '(("quxq" . "508455256768")))
 
 (setq xq/aws-accounts-helm-source
       `((name . "AWS Accounts")
@@ -133,9 +130,7 @@
               (helm :sources '(xq/aws-accounts-helm-source))
               ",")))
 
-(setq xq/aws-roles '(("Admin" . "Admin")
-                     ("ReadOnly" . "ReadOnly")
-                     ("RedeployApp" . "RedeployApp")))
+(setq xq/aws-roles '(("IibsAdminAccess-DO-NOT-DELETE" . "IibsAdminAccess-DO-NOT-DELETE")))
 
 (setq xq/aws-roles-helm-source
       `((name . "Roles")
@@ -161,7 +156,7 @@
       (xq/helm-select-and-set-aws-role))
     (if (or (null xq/aws-account-number) (null xq/aws-role))
         (message  "make sure %s %s are both non-null" xq/aws-account-number xq/aws-role)
-      (compile (format "ada credentials update --account=%s --provider=isengard --role=%s --once" xq/aws-account-number xq/aws-role)))))
+      (compile (format "ada credentials update --account=%s --provider=conduit --role=%s --once" xq/aws-account-number xq/aws-role)))))
 
 (defadvice xq/aws-creds-refresh (before mw-activation-before-xq/aws-creds-refresh activate)
   (amz-mw-maybe-refresh-cookie))
