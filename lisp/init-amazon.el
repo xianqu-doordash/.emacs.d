@@ -102,7 +102,7 @@
       (when (re-search-forward cr-regex nil t)
         (xq/open-link-in-browser (match-string 0))))))
 
-(defcustom xq/aws-account-number "900707210426"
+(defcustom xq/aws-account-number "508455256768"
   "Account number for aws actions."
   :group 'xq-aws
   :type 'string
