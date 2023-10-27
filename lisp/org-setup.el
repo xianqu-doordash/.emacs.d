@@ -70,7 +70,6 @@
     :load-path "/Users/quxq/Downloads/org-cv"
     :init (require 'ox-moderncv))
 
-
 (defun xq/export-resume ()
   "export current buffer of resume to pdf"
   (interactive)
@@ -89,6 +88,7 @@
 (puthash ?p "prod" xq/stage-hash-map)
 
 ;; Still hard coded, but have the potential to generalize
+;TODO: customizable block?
 ;;TODO: 1. make the src-block more generalized from params
 (defun xq/org-babel-refresh-configurations()
   "Refresh the entire configuration of some org file"
