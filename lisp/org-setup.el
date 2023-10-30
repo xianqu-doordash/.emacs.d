@@ -35,7 +35,8 @@
           ("WAITING" . (:foreground "red" :weight bold))
           ("SOMEDAY" . (:foreground "gray" :weight bold))))
   :hook
-  (org-mode . visual-line-mode))
+  (org-mode . visual-line-mode)
+  (org-babel-after-execute . xq/refresh-image-buffer-from-src-block))
 
 (use-package helm-org-rifle
   :ensure t
@@ -65,6 +66,16 @@
         (insert node)
         (shell-command-on-region (point-min) (point-max) "node -p" nil 't)
         (buffer-string))))))
+
+;;TODO: 1. do not question about it 2. jump back o existing buffer instead of in the image buffer
+(defun xq/refresh-image-buffer-from-src-block()
+  "Open the image if it's not opened yet or automatically refresh generated buffer by reading updated version from desk."
+  (let ((location (org-babel-where-is-src-block-result())))
+    (when location
+      (save-excursion
+        (goto-char location)
+        (when (re-search-forward "file:\\(.*\\)jpeg")
+          (org-open-at-point ()))))))
 
 (use-package ox-moderncv
     :load-path "/Users/quxq/Downloads/org-cv"
