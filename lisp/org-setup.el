@@ -67,15 +67,17 @@
         (shell-command-on-region (point-min) (point-max) "node -p" nil 't)
         (buffer-string))))))
 
-;;TODO: 1. do not question about it 2. jump back o existing buffer instead of in the image buffer
+;;TODO: 1. do not question about it
 (defun xq/refresh-image-buffer-from-src-block()
   "Open the image if it's not opened yet or automatically refresh generated buffer by reading updated version from desk."
-  (let ((location (org-babel-where-is-src-block-result())))
+  (let ((location (org-babel-where-is-src-block-result()))
+        (oldbuf (current-buffer)))
     (when location
       (save-excursion
         (goto-char location)
         (when (re-search-forward "file:\\(.*\\)jpeg")
-          (org-open-at-point ()))))))
+          (org-open-at-point ())
+          (switch-to-buffer-other-window oldbuf))))))
 
 (use-package ox-moderncv
     :load-path "/Users/quxq/Downloads/org-cv"

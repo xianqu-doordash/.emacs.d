@@ -108,7 +108,7 @@
   :type 'string
   :version "24.4")
 
-(defcustom xq/aws-role "Admin"
+(defcustom xq/aws-role "IibsAdminAccess-DO-NOT-DELETE"
   "Aws role for credential."
   :group 'xq-aws
   :type 'string
