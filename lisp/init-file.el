@@ -1,3 +1,6 @@
+;; revert without inqury for specific file types
+(setq revert-without-query '(".jpeg"))
+
 ;; hook for trailing white spaces
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
 
