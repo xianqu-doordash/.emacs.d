@@ -1,5 +1,6 @@
 (use-package amz-common
-  :after(projectile)
+  :after
+  (helm projectile)
   :init
   (add-to-list 'auto-mode-alist '("\\.smithy\\'" . smithy-mode))
   (add-to-list 'auto-mode-alist '("Config" . brazil-config-mode))
@@ -147,8 +148,9 @@
               ",")))
 
 ;TODO: more options say for personal etc, right now it just uses what is already defined in defcustom
-                                        ;TODO: is compile buf the best here
+;TODO: is compile buf the best here
 (defun xq/aws-creds-refresh(&optional specify-account-role)
+  "Select from helm prompted buffer for refreshing for aws credentials with given account and role"
   (interactive "P")
   (progn
     (when specify-account-role
@@ -160,5 +162,39 @@
 
 (defadvice xq/aws-creds-refresh (before mw-activation-before-xq/aws-creds-refresh activate)
   (amz-mw-maybe-refresh-cookie))
+
+(defcustom xq/amz-project-action "brazil-build"
+  "Project action for amazon."
+  :group 'xq-amz-project
+  :type 'string
+  :version "24.4")
+
+;TODO: make this to be project specific
+(setq xq/amz-project-actions '(("brazil-build" . "brazil-build")
+                               ("brazil-build test" . "brazil-build test")
+                               ("sam package" . "sam package")
+                               ("sam deploy" . "sam deploy")))
+
+(setq xq/amz-project-helm-source
+      `((name . "Amazon Project Actions")
+        (candidates . ,xq/amz-project-actions)
+        (action . (lambda (candidate)
+                    (helm-marked-candidates)))))
+
+(defun xq/helm-select-and-set-amz-project-action()
+  (interactive)
+  (setq
+   xq/amz-project-action
+   (mapconcat 'identity
+              (helm :sources '(xq/amz-project-helm-source))
+              ",")))
+
+(defun xq/amz-project-action-trigger(&optional new)
+  "Select from helm prompted buffer for refreshing for executing designated actions"
+  (interactive "P")
+  (let ((project-root (projectile-project-root)))
+    (when new
+      (xq/helm-select-and-set-amz-project-action))
+    (projectile-run-compilation xq/amz-project-action)))
 
 (provide 'init-amazon)
