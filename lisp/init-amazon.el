@@ -115,7 +115,8 @@
   :type 'string
   :version "24.4")
 
-(setq xq/aws-accounts '(("quxq" . "508455256768")))
+(setq xq/aws-accounts '(("quxq" . "508455256768")
+                        ("raft-mobile-core" . "913519916654")))
 
 (setq xq/aws-accounts-helm-source
       `((name . "AWS Accounts")
@@ -131,7 +132,8 @@
               (helm :sources '(xq/aws-accounts-helm-source))
               ",")))
 
-(setq xq/aws-roles '(("IibsAdminAccess-DO-NOT-DELETE" . "IibsAdminAccess-DO-NOT-DELETE")))
+(setq xq/aws-roles '(("IibsAdminAccess-DO-NOT-DELETE" . "IibsAdminAccess-DO-NOT-DELETE")
+                     ("Open Search Dev Write Role" . "RaftDeviceMetrics-dev-WriteAccessRole")))
 
 (setq xq/aws-roles-helm-source
       `((name . "Roles")
@@ -169,11 +171,16 @@
   :type 'string
   :version "24.4")
 
-;TODO: make this to be project specific
-(setq xq/amz-project-actions '(("brazil-build" . "brazil-build")
-                               ("brazil-build test" . "brazil-build test")
-                               ("sam package" . "sam package")
-                               ("sam deploy" . "sam deploy")))
+;TODO: make this to be project specific or file specific (say scan for sam to trigger for sam actions)
+(setq xq/amz-project-actions '(("bb" . "brazil-build")
+                               ("bb test" . "brazil-build test")
+                               ("bb and test" . "brazil-build && brazil-build test")
+                               ("bb clean" . "brazil-build clean")
+                               ("bb format" . "brazil-build format")
+                               ("npm fix lint" . "npm run lint:fix")
+                               ("sam package" . "./sam package")
+                               ("sam deploy" . "./sam deploy")
+                               ("bb package deploy" . "brazil-build && ./sam package && ./sam deploy")))
 
 (setq xq/amz-project-helm-source
       `((name . "Amazon Project Actions")
@@ -195,6 +202,7 @@
   (let ((project-root (projectile-project-root)))
     (when new
       (xq/helm-select-and-set-amz-project-action))
+    (cd project-root)
     (projectile-run-compilation xq/amz-project-action)))
 
 (provide 'init-amazon)
