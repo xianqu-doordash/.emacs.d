@@ -116,7 +116,8 @@
   :version "24.4")
 
 (setq xq/aws-accounts '(("quxq" . "508455256768")
-                        ("raft-mobile-core" . "913519916654")))
+                        ("raft-mobile-core" . "913519916654")
+                        ("raft-device-metrics-infra-beta" . "947538643956")))
 
 (setq xq/aws-accounts-helm-source
       `((name . "AWS Accounts")

@@ -69,9 +69,10 @@
 
 (defun xq/refresh-image-buffer-from-src-block()
   "Open the image if it's not opened yet or automatically refresh generated buffer by reading updated version from desk."
-  (let ((location (org-babel-where-is-src-block-result()))
+  (let ((info (org-babel-get-src-block-info))
+        (location (org-babel-where-is-src-block-result()))
         (oldbuf (current-buffer)))
-    (when location
+    (when (and location (string= "file replace" (assoc-default :results (nth 2 info))))
       (save-excursion
         (goto-char location)
         (when (re-search-forward "file:\\(.*\\)jpeg")
