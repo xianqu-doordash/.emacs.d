@@ -117,7 +117,12 @@
 
 (setq xq/aws-accounts '(("quxq" . "508455256768")
                         ("raft-mobile-core" . "913519916654")
-                        ("raft-device-metrics-infra-beta" . "947538643956")))
+                        ("raft-device-metrics-infra-beta" . "947538643956")
+                        ("beta.us-west-2.walebackend" . "787236793935")
+                        ("gamma.us-west-2.walebackend" . "162746009600")
+                        ("prod.us-east-1.walebackend" . "834151815912")
+                        ("prod.eu-west-1.walebackend" . "425967351307")
+                        ("prod.ap-northeast-1.walebackend" . "507437682167")))
 
 (setq xq/aws-accounts-helm-source
       `((name . "AWS Accounts")
