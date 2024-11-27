@@ -1,3 +1,7 @@
+;; always display in foreground at startup due to mac issue
+;; https://apple.stackexchange.com/questions/467216/emacs-starts-up-without-window-focus-in-macos-sonoma
+(select-frame-set-input-focus (selected-frame))
+
 ;; hide start up
 (setq inhibit-startup-screen t)
 
