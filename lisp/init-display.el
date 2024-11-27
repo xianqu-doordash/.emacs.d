@@ -10,7 +10,7 @@
 (display-time-mode 1)
 
 ;; show line/column number
-(global-linum-mode 1)
+(global-display-line-numbers-mode 1)
 (column-number-mode 1)
 
 ;; scroll down to the first compilation error

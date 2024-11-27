@@ -79,9 +79,9 @@
           (org-open-at-point ())
           (switch-to-buffer-other-window oldbuf))))))
 
-(use-package ox-moderncv
-    :load-path "/Users/quxq/Downloads/org-cv"
-    :init (require 'ox-moderncv))
+;;(use-package ox-moderncv
+;;   :load-path "/Users/quxq/Downloads/org-cv"
+;;   :init (require 'ox-moderncv))
 
 (defun xq/export-resume ()
   "export current buffer of resume to pdf"
