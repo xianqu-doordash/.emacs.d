@@ -1,3 +1,7 @@
+;; always display in foreground at startup due to mac issue
+;; https://apple.stackexchange.com/questions/467216/emacs-starts-up-without-window-focus-in-macos-sonoma
+(select-frame-set-input-focus (selected-frame))
+
 ;; hide start up
 (setq inhibit-startup-screen t)
 
@@ -10,7 +14,7 @@
 (display-time-mode 1)
 
 ;; show line/column number
-(global-linum-mode 1)
+(global-display-line-numbers-mode 1)
 (column-number-mode 1)
 
 ;; scroll down to the first compilation error

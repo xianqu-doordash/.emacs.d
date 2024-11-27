@@ -51,4 +51,4 @@
 (require 'markdown-setup)
 (require 'init-javascript)
 
-(require 'init-amazon)
+;; (require 'init-amazon)
