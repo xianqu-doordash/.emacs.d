@@ -43,7 +43,7 @@
 (require 'init-git)
 (require 'init-projectile)
 (require 'init-file)
-(require 'init-backup)
+;; (require 'init-backup)
 (require 'init-dired)
 (require 'init-yasnippet)
 (require 'init-company)

@@ -10,6 +10,7 @@
 
 ;; ace-window configuration to switch window quickly
 (use-package ace-window
+  :ensure t
   :bind
   ("C-x o" . ace-window)
   :config
@@ -91,4 +92,3 @@ Call a second time to restore the original window configuration."
 
 
 (provide 'init-window)
-
