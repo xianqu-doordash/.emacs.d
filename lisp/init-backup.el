@@ -6,6 +6,7 @@
 (setq delete-old-versions -1)
 (setq version-control t)
 (setq vc-make-backup-files t)
+(setq create-lockfiles nil)
 (setq auto-save-file-name-transforms '((".*" "~/.config/emacs/auto-save-list/" t)))
 
 (provide 'init-backup)
