@@ -2,7 +2,7 @@
   :mode (("\\.org$" . org-mode))
   :ensure t
   :custom
-  (org-plantuml-jar-path (expand-file-name "/Users/quxq/.emacs.d/jar/plantuml.jar"))
+  (org-plantuml-jar-path (expand-file-name "/Users/xian.qu/.emacs.d/jar/plantuml.jar"))
   :config
   ;;plantum uml
   (setq plantuml-default-exec-mode 'jar)
