@@ -10,6 +10,11 @@
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
+(defun xq/maybe-run-nvm-use()
+  (interactive)
+  (when (projectile-verify-file ".nvmrc")
+    (projectile-run-shell-command-in-root "/Users/xian.qu/.nvm/nvm-exec")))
+
 (use-package helm-projectile
   :after (helm projectile)
   :ensure t)
