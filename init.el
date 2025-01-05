@@ -40,7 +40,6 @@
 (require 'init-expand-region)
 (require 'init-multiplecursor)
 (require 'init-helm)
-(require 'init-git)
 (require 'init-projectile)
 (require 'init-file)
 (require 'init-backup)
